@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="可互動的科幻氣閘艙 3D 模型：操控太空人穿過防爆門進入微重力的裝備艙與氣閘艙，用噴氣背包漂浮、操作控制面板。" />
+    <title>科幻氣閘艙 · 互動 3D 展示</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div id="viewport"></div>
+
+    <header class="panel title">
+      <h1>科幻氣閘艙</h1>
+      <p>Sci-Fi Airlock · 互動 3D 模型</p>
+    </header>
+
+    <div class="hud-right">
+      <div class="panel status" aria-live="polite">
+        <div class="status-row" id="blast-status" data-state="closed">
+          <span class="dot"></span><span class="label">防爆門已鎖定</span>
+        </div>
+        <div class="status-row" id="hatch-status" data-state="closed">
+          <span class="dot"></span><span class="label">氣閘門已鎖定</span>
+        </div>
+      </div>
+      <aside class="panel telemetry" aria-label="艙室環境數據">
+        <div class="telemetry-title">艙室環境 · AL-07</div>
+        <dl>
+          <div><dt>位置</dt><dd id="t-room">站內走廊</dd></div>
+          <div><dt>重力</dt><dd id="t-gravity">1.00 g</dd></div>
+          <div><dt>氣閘艙壓</dt><dd id="t-pressure">101.3 kPa</dd></div>
+          <div><dt>O₂ 分壓</dt><dd id="t-oxygen">21.2 kPa</dd></div>
+          <div><dt>溫度</dt><dd id="t-temp">21.0 °C</dd></div>
+          <div><dt>照明</dt><dd id="t-light">標準</dd></div>
+          <div><dt>程序</dt><dd id="t-seq">待命</dd></div>
+        </dl>
+        <div class="gauge" aria-hidden="true"><div id="t-gauge"></div></div>
+      </aside>
+    </div>
+
+    <nav class="panel toolbar" aria-label="視角與操作">
+      <button id="blast-toggle" class="primary" disabled>開啟防爆門</button>
+      <button id="hatch-toggle" class="primary" disabled>開啟氣閘門</button>
+      <button id="mode-toggle" class="accent" disabled>操控太空人</button>
+      <button id="lamp-toggle" hidden>頭燈：關</button>
+      <span class="divider" aria-hidden="true"></span>
+      <button data-view="corridor" disabled>走廊全景</button>
+      <button data-view="door" disabled>艙門特寫</button>
+      <button data-view="trench" disabled>地板管溝</button>
+      <button data-view="ceiling" disabled>天花光影</button>
+      <button data-view="equip" disabled>裝備艙</button>
+      <button data-view="chamber" disabled>氣閘艙</button>
+    </nav>
+
+    <p class="panel hint" id="hint"></p>
+    <div class="panel prompt" id="prompt" hidden></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="joystick" id="joystick" hidden><div class="knob"></div></div>
+    <button class="touch-action" id="touch-action" hidden>互動</button>
+    <div class="touch-lift" id="touch-lift" hidden>
+      <button id="touch-up" aria-label="上升">▲</button>
+      <button id="touch-down" aria-label="下降">▼</button>
+    </div>
+
+    <div class="fade" id="fade"></div>
+
+    <div id="loader" class="loader">
+      <div class="loader-box">
+        <div class="loader-title" id="loader-title">載入模型中…</div>
+        <div class="bar"><div class="fill" id="loader-fill"></div></div>
+        <div class="loader-pct" id="loader-pct">0%</div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
